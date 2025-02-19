@@ -1,11 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-#
-# See https://github.com/r-lib/actions/tree/master/examples#readme for
-# additional example workflows available for the R community.
-
 name: R
 
 on:
@@ -19,23 +11,24 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: windows-latest  # Use windows-latest instead of windows10 for compatibility
     strategy:
       matrix:
-        r-version: ['4.0.0', '4.4.1']
-        #r-version: ['3.6.3', '4.1.1']
+        r-version: ['4.4.1', '4.4.2']  # Matrix for different R versions
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # Checkout the repository
       - name: Set up R ${{ matrix.r-version }}
-        uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
+        uses: r-lib/actions/setup-r@v2  # Use latest stable version instead of a specific commit
         with:
-          r-version: ${{ matrix.r-version }}
+          r-version: ${{ matrix.r-version }}  # Set the R version from the matrix
+
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck"))
-          remotes::install_deps(dependencies = TRUE)
+          install.packages(c("remotes", "rcmdcheck"))  # Install remotes and rcmdcheck
+          remotes::install_deps(dependencies = TRUE)  # Install all dependencies from DESCRIPTION
         shell: Rscript {0}
+
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")  # Run rcmdcheck to check the package
         shell: Rscript {0}
