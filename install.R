@@ -1,1 +1,2 @@
-install.packages("bibliometrix", dependencies = TRUE)
+install.packages("bibliometrix")
+devtools::install_github("massimoaria/biblioshiny")
