@@ -1,1 +1,11 @@
-r-4.0.3
+name: mybinder-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base=4.0.3
+  - r-bibliometrix
+  - r-devtools
+  - r-rmarkdown
+
