@@ -1,0 +1,2 @@
+library(Biblioshiny)
+biblioshiny()
