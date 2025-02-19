@@ -1,7 +1,7 @@
 # Install required packages (if necessary)
 install.packages("devtools")
 devtools::install_github("massimoaria/biblioshiny")
-
+Install.packages("bibliometrix")
 # Run Biblioshiny app
 library(Biblioshiny)
 biblioshiny()
